@@ -59,6 +59,7 @@ model commentModel {
 
   law   lawModel @relation(fields: [lawID], references: [id], onDelete: Cascade, onUpdate: Cascade)
   lawID String
+  userID String
 
   reply replyModel[]
 }

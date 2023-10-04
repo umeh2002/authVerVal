@@ -48,7 +48,9 @@ export const createLaw = async (req: any, res: Response) => {
 
 export const viewAll = async (req: Request, res: Response) => {
   try {
-    const law = await prisma.lawModel.findMany({});
+    const law = await prisma.lawModel.findMany({
+        include:{comments:true}
+    });
     return res.status(200).json({
       message: "Success",
       data: law,
@@ -66,6 +68,7 @@ export const viewOne = async (req: Request, res: Response) => {
     const { lawID } = req.params;
     const law = await prisma.lawModel.findUnique({
       where: { id: lawID },
+      include:{comments:true}
     });
     return res.status(200).json({
       message: "success",
