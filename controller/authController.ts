@@ -4,6 +4,7 @@ import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { PrismaClient } from "@prisma/client";
 import { resetAccountPassword, sendAccountOpeningMail } from "../utils/email copy";
+import { streamUpload } from "../utils/streamUpload";
 
 const prisma = new PrismaClient();
 
@@ -227,3 +228,26 @@ export const deleteUser = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const updateAvatar =async(req:any, res:Response)=>{
+  try {
+    const {userID} = req.params
+    const {secure_url, public_id}:any = await streamUpload(req)
+
+    const user =await prisma.authModel.update({
+      where:{id:userID},
+      data:{
+        avatar:secure_url, avatarID:public_id
+      }
+    })
+    return res.status(201).json({
+      message:"Success",
+      data:user
+    })
+  } catch (error:any) {
+    return res.status(404).json({
+      message:"Error updating avatar",
+      data:error.message
+    })
+  }
+}

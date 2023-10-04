@@ -6,6 +6,7 @@ import {
   registerUser,
   resetPassword,
   signInUser,
+  updateAvatar,
   verifyUser,
 } from "../controller/authController";
 import validatorHandler from "../utils/validatorHandler";
@@ -15,6 +16,10 @@ import {
   resetValidator,
   signInValidator,
 } from "../utils/validators";
+import multer from "multer";
+
+const myUpload = multer().single("avatar");
+
 const router = Router();
 
 router.route("/register").post(validatorHandler(createValidator), registerUser);
@@ -28,5 +33,6 @@ router
 router.route("/:userID/delete-user").delete(deleteUser);
 router.route("/get-all").get(getAll);
 router.route("/:token/verify").get(verifyUser);
+router.route("/:userID/update-avatar").patch(myUpload, updateAvatar);
 
 export default router;

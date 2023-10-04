@@ -13,40 +13,40 @@ datasource db {
 model authModel {
   id String @id @default(uuid())
 
-  name String 
-  email String @unique
-  password String 
+  name     String
+  email    String @unique
+  password String
 
   verified Boolean @default(false)
-  token String?
+  token    String?
 
-  avatar String?
+  avatar   String?
   avatarID String?
 
   createdAt DateTime @default(now())
 
-  store storeModel[]
+  law lawModel[]
 }
 
-model storeModel {
+model lawModel {
   id String @id @default(uuid())
 
-  title String
-  cost Int
+  title       String
   description String
-  category String
+  category    String
+  content     String
 
-  image String?
+  image   String?
   imageID String?
 
   createdAt DateTime @default(now())
 
-  user authModel @relation(fields: [userID], references: [id])
-  userID String 
+  user   authModel @relation(fields: [userID], references: [id])
+  userID String
 
   rating Int
 
-comments commentModel[]
+  comments commentModel[]
 }
 
 model commentModel {
@@ -56,11 +56,10 @@ model commentModel {
 
   createdAt DateTime @default(now())
 
-  store storeModel @relation(fields: [storeID], references: [id])
-  storeID String 
+  law   lawModel @relation(fields: [lawID], references: [id])
+  lawID String
 
   reply replyModel[]
-
 }
 
 model replyModel {
@@ -70,7 +69,6 @@ model replyModel {
 
   createdAt DateTime @default(now())
 
-  comment commentModel @relation(fields: [commentID], references: [id])
-  commentID String 
-
+  comment   commentModel @relation(fields: [commentID], references: [id])
+  commentID String
 }
