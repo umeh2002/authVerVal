@@ -11,32 +11,32 @@ export const createLaw = async (req: any, res: Response) => {
     const { secure_url, public_id }: any = await streamUpload(req);
 
     const user = await prisma.authModel.findUnique({
-        where:{id:userID},
-        include:{law:true}
-    })
+      where: { id: userID },
+      include: { law: true },
+    });
     if (user) {
-        const law = await prisma.lawModel.create({
-            data: {
-              title,
-              description,
-              content,
-              category,
-              image: secure_url,
-              imageID: public_id,
-              userID,
-              rate:0
-            },
-          });
+      const law = await prisma.lawModel.create({
+        data: {
+          title,
+          description,
+          content,
+          category,
+          image: secure_url,
+          imageID: public_id,
+          userID,
+          rate: 0,
+        },
+      });
 
-          user.law.push(law)
-          return res.status(201).json({
-            message: "Success",
-            data: user,
-          }); 
+      user.law.push(law);
+      return res.status(201).json({
+        message: "Success",
+        data: user,
+      });
     } else {
-        return res.status(404).json({
-            message:"error",
-        })
+      return res.status(404).json({
+        message: "error",
+      });
     }
   } catch (error: any) {
     return res.status(404).json({
@@ -138,7 +138,7 @@ export const viewLawyerLaw = async (req: Request, res: Response) => {
       where: { id: lawID },
     });
 
-    if (user?.id=== law?.userID) {
+    if (user?.id === law?.userID) {
       const lawyer = await prisma.lawModel.findMany({});
       return res.status(200).json({
         message: "success",
@@ -157,96 +157,101 @@ export const viewLawyerLaw = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteLaw =async(req:Request, res:Response)=>{
-    try {
-        const {lawID,userID} = req.params
-        const user =await prisma.authModel.findUnique({
-            where:{id:userID}
-        })
-        const law = await prisma.lawModel.findUnique({
-            where:{id:lawID}
-        })
-        if (user?.id=== law?.userID) {
-            const lawyer = await prisma.lawModel.delete({
-                where:{id:lawID}
-            })
-            return res.status(200).json({
-                message: "success",
-                data: lawyer,
-              });
-        } else {
-            return res.status(404).json({
-                message: "you cannot access this page",
-              });
-        }
-    } catch (error:any) {
-        return res.status(404).json({
-            message:"Error deleting",
-            data:error.message
-        })
+export const deleteLaw = async (req: Request, res: Response) => {
+  try {
+    const { lawID, userID } = req.params;
+    const user = await prisma.authModel.findUnique({
+      where: { id: userID },
+    });
+    const law = await prisma.lawModel.findUnique({
+      where: { id: lawID },
+    });
+    if (user?.id === law?.userID) {
+      const lawyer = await prisma.lawModel.delete({
+        where: { id: lawID },
+      });
+      return res.status(200).json({
+        message: "success",
+        data: lawyer,
+      });
+    } else {
+      return res.status(404).json({
+        message: "you cannot access this page",
+      });
     }
-}
+  } catch (error: any) {
+    return res.status(404).json({
+      message: "Error deleting",
+      data: error.message,
+    });
+  }
+};
 
-export const viewAllLawyerLaw =async(req:Request, res:Response)=>{
-try {
-    const {userID} = req.params
+export const viewAllLawyerLaw = async (req: Request, res: Response) => {
+  try {
+    const { userID } = req.params;
 
     const user = await prisma.authModel.findUnique({
-        where:{id:userID},
-        include:{law:true}
-    })
+      where: { id: userID },
+      include: { law: true },
+    });
     if (user) {
-        return res.status(200).json({
-            message:"Success",
-            data: user.law
-        })
+      return res.status(200).json({
+        message: "Success",
+        data: user.law,
+      });
     } else {
-        return res.status(404).json({
-            message:"register user please"
-        })
+      return res.status(404).json({
+        message: "register user please",
+      });
     }
-} catch (error:any) {
+  } catch (error: any) {
     return res.status(404).json({
-        message:"Error",
-        data:error.message
-    })
-}
-}
+      message: "Error",
+      data: error.message,
+    });
+  }
+};
 
-// export const rateLaw =async(req:Request, res:Response)=>{
-//     try {
-//         const {lawID, userID} =req.params
-//         const (rating) =req.body
+export const rateLaw = async (req: Request, res: Response) => {
+  try {
+    const { lawID, userID } = req.params;
+    const { rating } = req.body;
 
-// const user =await prisma.authModel.findUnique({
-//     where:{id:userID}
-// })
+    const user = await prisma.authModel.findUnique({
+      where: { id: userID },
+    });
 
-// const law =await prisma.lawModel.findUnique({
-//     where:{id:lawID}
-// })
+    const law = await prisma.lawModel.findUnique({
+      where: { id: lawID },
+    });
 
-// let total:any =law?.rating?.reduce((a:number, b:number)=>{
-//     return a + b;
-// }, 0)
+    let total: any = law?.rating?.reduce((a: number, b: number) => {
+      return a + b;
+    }, 0);
 
-// if (user) {
-//    let totalLength:any =law?.rating.length
-//    law?.rating.push(rating)
-   
-//    let rated:number =Math.ceil(total / totalLength)
-// const lawyer =await prisma.lawModel.update({
-//     where:{id:lawID},
-//     data:{rating:law?.rating, rate:rated}
-// })
+    if (user) {
+      let totalLength: any = law?.rating.length;
+      law?.rating.push(rating);
 
-// } else {
-    
-// }
-//     } catch (error:any) {
-//        return res.status(404).json({
-//         message:"error",
-//         data:error.message
-//        }) 
-//     }
-// }
+      let rated: number = Math.ceil(total / totalLength);
+      const lawyer = await prisma.lawModel.update({
+        where: { id: lawID },
+        data: { rating: law?.rating, rate: rated },
+      });
+      return res.status(201).json({
+        message: "success",
+        data: lawyer,
+      });
+    } else {
+      return res.status(404).json({
+        message: "failed to rate",
+      });
+    }
+  } catch (error: any) {
+    return res.status(404).json({
+      message: "error",
+      data: error.message,
+    });
+  }
+};

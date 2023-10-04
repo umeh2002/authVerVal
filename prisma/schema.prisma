@@ -41,7 +41,7 @@ model lawModel {
 
   createdAt DateTime @default(now())
 
-  user   authModel @relation(fields: [userID], references: [id])
+  user   authModel @relation(fields: [userID], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userID String
 
   rating Int[]
@@ -57,7 +57,7 @@ model commentModel {
 
   createdAt DateTime @default(now())
 
-  law   lawModel @relation(fields: [lawID], references: [id])
+  law   lawModel @relation(fields: [lawID], references: [id], onDelete: Cascade, onUpdate: Cascade)
   lawID String
 
   reply replyModel[]
@@ -70,6 +70,6 @@ model replyModel {
 
   createdAt DateTime @default(now())
 
-  comment   commentModel @relation(fields: [commentID], references: [id])
+  comment   commentModel @relation(fields: [commentID], references: [id], onDelete: Cascade, onUpdate: Cascade)
   commentID String
 }
