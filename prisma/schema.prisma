@@ -44,7 +44,8 @@ model lawModel {
   user   authModel @relation(fields: [userID], references: [id])
   userID String
 
-  rating Int
+  rating Int[]
+  rate   Int?
 
   comments commentModel[]
 }

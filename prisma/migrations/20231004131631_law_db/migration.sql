@@ -14,19 +14,20 @@ CREATE TABLE "authModel" (
 );
 
 -- CreateTable
-CREATE TABLE "storeModel" (
+CREATE TABLE "lawModel" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
-    "cost" INTEGER NOT NULL,
     "description" TEXT NOT NULL,
     "category" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
     "image" TEXT,
     "imageID" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userID" TEXT NOT NULL,
-    "rating" INTEGER NOT NULL,
+    "rating" INTEGER[],
+    "rate" INTEGER,
 
-    CONSTRAINT "storeModel_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "lawModel_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -34,7 +35,7 @@ CREATE TABLE "commentModel" (
     "id" TEXT NOT NULL,
     "comment" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "storeID" TEXT NOT NULL,
+    "lawID" TEXT NOT NULL,
 
     CONSTRAINT "commentModel_pkey" PRIMARY KEY ("id")
 );
@@ -53,10 +54,10 @@ CREATE TABLE "replyModel" (
 CREATE UNIQUE INDEX "authModel_email_key" ON "authModel"("email");
 
 -- AddForeignKey
-ALTER TABLE "storeModel" ADD CONSTRAINT "storeModel_userID_fkey" FOREIGN KEY ("userID") REFERENCES "authModel"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "lawModel" ADD CONSTRAINT "lawModel_userID_fkey" FOREIGN KEY ("userID") REFERENCES "authModel"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "commentModel" ADD CONSTRAINT "commentModel_storeID_fkey" FOREIGN KEY ("storeID") REFERENCES "storeModel"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "commentModel" ADD CONSTRAINT "commentModel_lawID_fkey" FOREIGN KEY ("lawID") REFERENCES "lawModel"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "replyModel" ADD CONSTRAINT "replyModel_commentID_fkey" FOREIGN KEY ("commentID") REFERENCES "commentModel"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
