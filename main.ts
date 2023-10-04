@@ -5,6 +5,7 @@ import helmet from "helmet";
 import auth from "./router/authRouter";
 import law from "./router/lawRouter";
 import comment from "./router/commentRouter";
+import reply from "./router/replyRouter";
 
 export const main = (app: Application) => {
   app.use(express.json());
@@ -33,4 +34,5 @@ export const main = (app: Application) => {
   app.use("/api", auth);
   app.use("/api", law);
   app.use("/api", comment);
+  app.use("/api", reply);
 };

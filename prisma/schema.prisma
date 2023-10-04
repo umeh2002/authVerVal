@@ -73,4 +73,6 @@ model replyModel {
 
   comment   commentModel @relation(fields: [commentID], references: [id], onDelete: Cascade, onUpdate: Cascade)
   commentID String
+  userID String 
+  
 }

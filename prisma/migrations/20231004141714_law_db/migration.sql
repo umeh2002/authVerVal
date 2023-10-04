@@ -47,6 +47,7 @@ CREATE TABLE "replyModel" (
     "reply" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "commentID" TEXT NOT NULL,
+    "userID" TEXT NOT NULL,
 
     CONSTRAINT "replyModel_pkey" PRIMARY KEY ("id")
 );
