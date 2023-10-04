@@ -4,6 +4,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import auth from "./router/authRouter";
 import law from "./router/lawRouter";
+import comment from "./router/commentRouter";
 
 export const main = (app: Application) => {
   app.use(express.json());
@@ -31,4 +32,5 @@ export const main = (app: Application) => {
 
   app.use("/api", auth);
   app.use("/api", law);
+  app.use("/api", comment);
 };
