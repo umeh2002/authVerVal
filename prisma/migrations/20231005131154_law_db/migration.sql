@@ -8,6 +8,8 @@ CREATE TABLE "authModel" (
     "token" TEXT,
     "avatar" TEXT,
     "avatarID" TEXT,
+    "role" TEXT NOT NULL,
+    "roleID" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "authModel_pkey" PRIMARY KEY ("id")
@@ -54,6 +56,9 @@ CREATE TABLE "replyModel" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "authModel_email_key" ON "authModel"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "authModel_roleID_key" ON "authModel"("roleID");
 
 -- AddForeignKey
 ALTER TABLE "lawModel" ADD CONSTRAINT "lawModel_userID_fkey" FOREIGN KEY ("userID") REFERENCES "authModel"("id") ON DELETE CASCADE ON UPDATE CASCADE;

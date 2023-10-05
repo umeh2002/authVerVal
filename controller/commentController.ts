@@ -73,3 +73,7 @@ export const deleteComment = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const viewAllComments =async(req: Request, res: Response)=>{
+
+}

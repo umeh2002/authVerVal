@@ -18,10 +18,10 @@ const router = Router();
 
 router.route("/:userID/create-law").post(myPic, createLaw);
 router.route("/view-all").get(viewAll);
-router.route("/:userID/view-one").get(viewOne);
+router.route("/:lawID/view-one").get(viewOne);
 router.route("/:lawID/update-law").patch(updateLaw);
-router.route("/:lawID/update-pic").patch(updateImage);
-router.route("/:lawID/delete-law").delete(deleteLaw);
+router.route("/:lawID/update-pic").patch(myPic,updateImage);
+router.route("/:userID/:lawID/delete-law").delete(deleteLaw);
 router.route("/:userID/:lawID/view-lawyer-laws").get(viewLawyerLaw);
 router.route("/:userID/view-lawyer-law").get(viewAllLawyerLaw);
 router.route("/:userID/:lawID/rate-law").patch(rateLaw);

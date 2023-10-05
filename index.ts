@@ -85,6 +85,7 @@ process.on("uncaughtException", (reason: any) => {
 
 process.on("unhandledRejection", (error: any) => {
   console.log("server is shutting down due to unhandled rejection");
+  console.log(error)
   server.close(() => {
     process.exit(1);
   });

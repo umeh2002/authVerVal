@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { streamUpload } from "../utils/streamUpload";
+import { role } from "../utils/role";
 
 const prisma = new PrismaClient();
 
@@ -14,7 +15,7 @@ export const createLaw = async (req: any, res: Response) => {
       where: { id: userID },
       include: { law: true },
     });
-    if (user) {
+    if (user?.role==="lawyer") {
       const law = await prisma.lawModel.create({
         data: {
           title,
@@ -35,7 +36,7 @@ export const createLaw = async (req: any, res: Response) => {
       });
     } else {
       return res.status(404).json({
-        message: "error",
+        message: "you aren't allowed to access this",
       });
     }
   } catch (error: any) {
@@ -136,6 +137,7 @@ export const viewLawyerLaw = async (req: Request, res: Response) => {
 
     const user = await prisma.authModel.findUnique({
       where: { id: userID },
+      include:{law:true}
     });
     const law = await prisma.lawModel.findUnique({
       where: { id: lawID },
