@@ -75,5 +75,19 @@ export const deleteComment = async (req: Request, res: Response) => {
 };
 
 export const viewAllComments =async(req: Request, res: Response)=>{
+try {
+  const commented = await prisma.commentModel.findMany({
+    include:{reply:true}
+  })
 
+  return res.status(200).json({
+    message:"success",
+    data:commented
+  })
+} catch (error:any) {
+  return res.status(404).json({
+    message:"error",
+    data:error.message
+  })
+}
 }
