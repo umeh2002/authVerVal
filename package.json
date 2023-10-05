@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@prisma/client": "^5.2.0",
+    "@prisma/client": "^5.4.1",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie-session": "^2.0.45",
     "@types/cors": "^2.8.14",
@@ -39,6 +39,7 @@
     "passport-github2": "^0.1.12",
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",
+    "prisma": "^5.4.1",
     "streamifier": "^0.1.1"
   },
   "name": "verification2",
