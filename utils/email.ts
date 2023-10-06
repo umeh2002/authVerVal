@@ -4,16 +4,17 @@ import path from "path";
 import ejs from "ejs";
 
 const GOOGLE_ID =
-  "72356347044-qj7re6pj9lc6onng45o5f6s6k9qk9q67.apps.googleusercontent.com";
-const GOOGLE_SECRET = "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";
+  "8234988124-bsdkkpf67ga2ger27sab514fpf21psb8.apps.googleusercontent.com";
+const GOOGLE_SECRET = "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";
 const GOOGLE_REFRESH_TOKEN =
-  "1//04MqTYFdM3id7CgYIARAAGAQSNwF-L9IrhmxdcF8sTqSaJSS8Lv1f-_iLfvi1hRvt0Qtp20jxc67s7GtoQrn5SKJXIbwFD-hlNJ4";
+  "1//04mHwQohkG1_vCgYIARAAGAQSNwF-L9IrFdUdrogeOJnb3PaZpXUuXPx1YVL4TLtvPEEkUv8A6splKm4vxKmP0ARplmWZoJS6vL";
 const GOOGLE_URL = "https://developers.google.com/oauthplayground";
 
 const oAuth = new google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_URL);
 oAuth.setCredentials({ access_token: GOOGLE_REFRESH_TOKEN });
 
-const url: string = "http://localhost:3678";
+const url: string = "https://ajlawtesting.onrender.com/";
+// const url2: string = "http://localhost:3678/";
 
 export const sendAccountOpeningMail = async (user: any, tokenID: string) => {
   try {
@@ -23,7 +24,7 @@ export const sendAccountOpeningMail = async (user: any, tokenID: string) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "eumeh3882@gmail.com",
+        user: "ajegunlelaw@gmail.com",
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
         refreshToken: GOOGLE_REFRESH_TOKEN,
@@ -40,7 +41,7 @@ export const sendAccountOpeningMail = async (user: any, tokenID: string) => {
     const data = await ejs.renderFile(readData, passedData);
 
     const mailer = {
-      from: " <eumeh3882@gmail.com > ",
+      from: " <ajegunlelaw@gmail.com> ",
       to: user.email,
       subject:
         "Welcome to AJ LAW Constituency, Where Ajegunle's Laws are clarified and properly interpreted!",
@@ -61,7 +62,7 @@ export const resetAccountPassword = async (user: any, tokenID: string) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "eumeh3882@gmail.com",
+        user: "ajegunlelaw@gmail.com",
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
         refreshToken: GOOGLE_REFRESH_TOKEN,
@@ -78,7 +79,7 @@ export const resetAccountPassword = async (user: any, tokenID: string) => {
     const data = await ejs.renderFile(readData, passedData);
 
     const mailer = {
-      from: " <eumeh3882@gmail.com > ",
+      from: " <ajegunlelaw@gmail.com > ",
       to: user.email,
       subject:
         "Welcome to AJ LAW Constituency, you can now reset your password",

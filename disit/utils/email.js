@@ -17,13 +17,14 @@ const googleapis_1 = require("googleapis");
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const path_1 = __importDefault(require("path"));
 const ejs_1 = __importDefault(require("ejs"));
-const GOOGLE_ID = "72356347044-qj7re6pj9lc6onng45o5f6s6k9qk9q67.apps.googleusercontent.com";
-const GOOGLE_SECRET = "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";
-const GOOGLE_REFRESH_TOKEN = "1//04MqTYFdM3id7CgYIARAAGAQSNwF-L9IrhmxdcF8sTqSaJSS8Lv1f-_iLfvi1hRvt0Qtp20jxc67s7GtoQrn5SKJXIbwFD-hlNJ4";
+const GOOGLE_ID = "8234988124-bsdkkpf67ga2ger27sab514fpf21psb8.apps.googleusercontent.com";
+const GOOGLE_SECRET = "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";
+const GOOGLE_REFRESH_TOKEN = "1//04mHwQohkG1_vCgYIARAAGAQSNwF-L9IrFdUdrogeOJnb3PaZpXUuXPx1YVL4TLtvPEEkUv8A6splKm4vxKmP0ARplmWZoJS6vL";
 const GOOGLE_URL = "https://developers.google.com/oauthplayground";
 const oAuth = new googleapis_1.google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_URL);
 oAuth.setCredentials({ access_token: GOOGLE_REFRESH_TOKEN });
-const url = "http://localhost:3678";
+const url = "https://ajlawtesting.onrender.com/";
+// const url2: string = "http://localhost:3678/";
 const sendAccountOpeningMail = (user, tokenID) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const getAccess = (yield oAuth.getAccessToken()).token;
@@ -31,7 +32,7 @@ const sendAccountOpeningMail = (user, tokenID) => __awaiter(void 0, void 0, void
             service: "gmail",
             auth: {
                 type: "OAuth2",
-                user: "eumeh3882@gmail.com",
+                user: "ajegunlelaw@gmail.com",
                 clientId: GOOGLE_ID,
                 clientSecret: GOOGLE_SECRET,
                 refreshToken: GOOGLE_REFRESH_TOKEN,
@@ -45,7 +46,7 @@ const sendAccountOpeningMail = (user, tokenID) => __awaiter(void 0, void 0, void
         const readData = path_1.default.join(__dirname, "../views/index.ejs");
         const data = yield ejs_1.default.renderFile(readData, passedData);
         const mailer = {
-            from: " <eumeh3882@gmail.com > ",
+            from: " <ajegunlelaw@gmail.com> ",
             to: user.email,
             subject: "Welcome to AJ LAW Constituency, Where Ajegunle's Laws are clarified and properly interpreted!",
             html: data,
@@ -64,7 +65,7 @@ const resetAccountPassword = (user, tokenID) => __awaiter(void 0, void 0, void 0
             service: "gmail",
             auth: {
                 type: "OAuth2",
-                user: "eumeh3882@gmail.com",
+                user: "ajegunlelaw@gmail.com",
                 clientId: GOOGLE_ID,
                 clientSecret: GOOGLE_SECRET,
                 refreshToken: GOOGLE_REFRESH_TOKEN,
@@ -78,7 +79,7 @@ const resetAccountPassword = (user, tokenID) => __awaiter(void 0, void 0, void 0
         const readData = path_1.default.join(__dirname, "../views/resetPassword.ejs");
         const data = yield ejs_1.default.renderFile(readData, passedData);
         const mailer = {
-            from: " <eumeh3882@gmail.com > ",
+            from: " <ajegunlelaw@gmail.com > ",
             to: user.email,
             subject: "Welcome to AJ LAW Constituency, you can now reset your password",
             html: data,
