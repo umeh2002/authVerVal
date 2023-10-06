@@ -13,7 +13,6 @@ export const main = (app: Application) => {
   app.use(morgan("dev"));
   app.use(helmet());
   app.set("view engine", "ejs");
-  app.set('views', '/opt/render/project/src/views')
   app.use(express.static("public"));
   app.use(express.static(`${__dirname}/css`));
 
