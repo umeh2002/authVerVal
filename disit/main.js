@@ -23,12 +23,9 @@ const main = (app) => {
     app.use(express_1.default.static(`${__dirname}/css`));
     app.get("/", (req, res) => {
         try {
-            const data = {
-                name: "emmanuel",
-                email: "emmanuel@gmail.com",
-                url: "https://google.com",
-            };
-            return res.status(200).render("index", data);
+            return res.status(200).json({
+                message: "welcome to law api"
+            });
         }
         catch (error) {
             return res.status(404).json({

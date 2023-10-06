@@ -17,20 +17,17 @@ export const main = (app: Application) => {
   app.use(express.static("public"));
   app.use(express.static(`${__dirname}/css`));
 
-  app.get("/", (req, res) => {
+  app.get("/",(req, res)=>{
     try {
-      const data = {
-        name: "emmanuel",
-        email: "emmanuel@gmail.com",
-        url: "https://google.com",
-      };
-      return res.status(200).render("index", data);
-    } catch (error) {
+      return res.status(200).json({
+        message:"welcome to law api"
+      })
+    } catch (error:any) {
       return res.status(404).json({
-        message: "error",
-      });
+        message:"error",
+      })
     }
-  });
+  })
 
   app.use("/api", auth);
   app.use("/api", law);
