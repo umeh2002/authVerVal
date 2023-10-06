@@ -13,7 +13,7 @@ const GOOGLE_URL = "https://developers.google.com/oauthplayground";
 const oAuth = new google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_URL);
 oAuth.setCredentials({ access_token: GOOGLE_REFRESH_TOKEN });
 
-const url: string = "https://ajlawtesting.onrender.com/";
+const url: string = "https://ajlawtesting.onrender.com";
 // const url2: string = "http://localhost:3678/";
 
 export const sendAccountOpeningMail = async (user: any, tokenID: string) => {
