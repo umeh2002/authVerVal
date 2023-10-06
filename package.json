@@ -48,7 +48,7 @@
   "scripts": {
     "build":"tsc",
     "dev": "ts-node-dev index.ts",
-    "start":"node ./disit/index.js"
+    "start":"node ./dist/index.js"
   },
   "keywords": [],
   "author": "",
