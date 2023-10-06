@@ -14,7 +14,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3678/google/callback",
+      callbackURL: "https://ajlawtesting.onrender.com/google/callback",
       // callbackURL: environemtVariable.CALLBACKURL,
       passReqToCallback: true,
     },
