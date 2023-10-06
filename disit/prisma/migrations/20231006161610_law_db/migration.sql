@@ -1,15 +1,15 @@
 -- CreateTable
 CREATE TABLE "authModel" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
-    "verified" BOOLEAN NOT NULL DEFAULT false,
-    "token" TEXT,
-    "avatar" TEXT,
-    "avatarID" TEXT,
-    "role" TEXT NOT NULL,
-    "roleID" TEXT,
+    "id" STRING NOT NULL,
+    "name" STRING NOT NULL,
+    "email" STRING NOT NULL,
+    "password" STRING NOT NULL,
+    "verified" BOOL NOT NULL DEFAULT false,
+    "token" STRING,
+    "avatar" STRING,
+    "avatarID" STRING,
+    "role" STRING NOT NULL,
+    "roleID" STRING,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "authModel_pkey" PRIMARY KEY ("id")
@@ -17,39 +17,39 @@ CREATE TABLE "authModel" (
 
 -- CreateTable
 CREATE TABLE "lawModel" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "category" TEXT NOT NULL,
-    "content" TEXT NOT NULL,
-    "image" TEXT,
-    "imageID" TEXT,
+    "id" STRING NOT NULL,
+    "title" STRING NOT NULL,
+    "description" STRING NOT NULL,
+    "category" STRING NOT NULL,
+    "content" STRING NOT NULL,
+    "image" STRING,
+    "imageID" STRING,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "userID" TEXT NOT NULL,
-    "rating" INTEGER[],
-    "rate" INTEGER,
+    "userID" STRING NOT NULL,
+    "rating" INT4[],
+    "rate" INT4,
 
     CONSTRAINT "lawModel_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "commentModel" (
-    "id" TEXT NOT NULL,
-    "comment" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "comment" STRING NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "lawID" TEXT NOT NULL,
-    "userID" TEXT NOT NULL,
+    "lawID" STRING NOT NULL,
+    "userID" STRING NOT NULL,
 
     CONSTRAINT "commentModel_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "replyModel" (
-    "id" TEXT NOT NULL,
-    "reply" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "reply" STRING NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "commentID" TEXT NOT NULL,
-    "userID" TEXT NOT NULL,
+    "commentID" STRING NOT NULL,
+    "userID" STRING NOT NULL,
 
     CONSTRAINT "replyModel_pkey" PRIMARY KEY ("id")
 );
