@@ -17,7 +17,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const crypto_1 = __importDefault(require("crypto"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const client_1 = require("@prisma/client");
-const email_copy_1 = require("../utils/email copy");
+const email_1 = require("../utils/email");
 const role_1 = require("../utils/role");
 const streamUpload_1 = require("../utils/streamUpload");
 const prisma = new client_1.PrismaClient();
@@ -38,7 +38,7 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             },
         });
         const tokenID = jsonwebtoken_1.default.sign({ id: user.id }, "secret");
-        (0, email_copy_1.sendAccountOpeningMail)(user, tokenID).then(() => {
+        (0, email_1.sendAccountOpeningMail)(user, tokenID).then(() => {
             console.log("sent mail");
         });
         return res.status(201).json({
@@ -72,7 +72,7 @@ const registerLawyer = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 }
             });
             const tokenID = jsonwebtoken_1.default.sign({ id: user.id }, "secret");
-            (0, email_copy_1.sendAccountOpeningMail)(user, tokenID).then(() => {
+            (0, email_1.sendAccountOpeningMail)(user, tokenID).then(() => {
                 console.log("sent mail");
             });
             return res.status(201).json({
@@ -179,7 +179,7 @@ const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                     token,
                 },
             });
-            (0, email_copy_1.resetAccountPassword)(user, token).then(() => {
+            (0, email_1.resetAccountPassword)(user, token).then(() => {
                 console.log("sent password reset");
             });
             return res.status(200).json({

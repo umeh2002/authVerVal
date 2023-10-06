@@ -36,7 +36,7 @@ export const sendAccountOpeningMail = async (user: any, tokenID: string) => {
       url: `${url}/api/${tokenID}/verify`,
     };
 
-    const readData = path.join(__dirname, "../views/index copy.ejs");
+    const readData = path.join(__dirname, "../views/index.ejs");
     const data = await ejs.renderFile(readData, passedData);
 
     const mailer = {

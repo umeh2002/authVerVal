@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { PrismaClient } from "@prisma/client";
-import { resetAccountPassword, sendAccountOpeningMail } from "../utils/email copy";
+import { resetAccountPassword, sendAccountOpeningMail } from "../utils/email";
 import { role } from "../utils/role";
 import { streamUpload } from "../utils/streamUpload";
 
