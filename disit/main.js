@@ -18,6 +18,7 @@ const main = (app) => {
     app.use((0, morgan_1.default)("dev"));
     app.use((0, helmet_1.default)());
     app.set("view engine", "ejs");
+    app.set('views', '/opt/render/project/src/views');
     app.use(express_1.default.static("public"));
     app.use(express_1.default.static(`${__dirname}/css`));
     app.get("/", (req, res) => {
